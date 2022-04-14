@@ -1,4 +1,9 @@
 import pandas as pd
+import spacy
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import Counter
 
 """
 Explore the dataset (1.5 points)
@@ -11,9 +16,10 @@ c) The dataset was annotated by native and non-native speakers. How do the binar
 the probabilistic complexity label account for this distinction?
 """
 
-
-
-
+df = pd.read_csv('../data/original/english/WikiNews_Train.tsv', sep='\t', header=None)
+data = df.set_axis(
+    ['id', 'sentence', 'start', 'end', 'trgt', 'nat_ann', 'nonnat_ann', 'nat_diff', 'non_diff', 'label', 'prob'],
+    axis=1, inplace=False)
 
 """
 Extract basic statistics (0.5 point)
@@ -29,36 +35,43 @@ Number of instances consisting of more than one token:
 Maximum number of tokens for an instance: 
 """
 
-data = pd.read_csv("../data/original/english/WikiNews_Train.tsv", sep='\t', header=None)
+num_of_inst_0 = len(data[(data["label"] == 0)])
+num_of_inst_1 = len(data[(data["label"] == 1)])
 
+print(data.describe())
 
-
-
+min_prob_label = data["prob"].min()
+max_prob_label = data["prob"].max()
+mean_prob_label = data["prob"].mean()
+median_prob_label = data["prob"].median()
+std_prob_label = data["prob"].std()
 
 print("DONE")
 
-"""Data desciption
-Each line represents a sentence with one complex word annotation and relevant information, each separated by a TAB character.
+nlp = spacy.load("en_core_web_sm")
 
-    The first column shows the HIT ID of the sentence. All sentences with the same ID belong to the same HIT.
-    The second column shows the actual sentence where there exists a complex phrase annotation.
-    The third and fourth columns display the start and end offsets of the target word in this sentence.
-    The fifth column represents the target word.
-    The sixth and seventh columns show the number of native annotators and the number of non-native annotators who saw the sentence.
-    The eighth and ninth columns show the number of native annotators and the number of non-native annotators who marked the target word as difficult.
-    The tenth and eleventh columns show the gold-standard label for the binary and probabilistic classification tasks.
+num_inst_mor_one_token = 0
 
-The labels in the binary classification task were assigned in the following manner:
+for row in range(len(data)):
+    doc = nlp(data.loc[row, "trgt"])
+    for np in doc.noun_chunks:
+        if len(np) > 1:
+            num_inst_mor_one_token += 1
 
-    0: simple word (none of the annotators marked the word as difficult)
-    1: complex word (at least one annotator marked the word as difficult)
+print("Number of instances consisting of more than one token : ", num_inst_mor_one_token)  # 1624
 
-The labels in the probabilistic classification task were assigned as <the number of annotators who marked the word as difficult>/<the total number of annotators>."""
+max_num_of_tokens = 0
+maximum_token = ''
 
+for row in range(len(data)):
+    doc = nlp(data.loc[row, "trgt"])
+    for np in doc.noun_chunks:
+        if len(np) > max_num_of_tokens:
+            max_num_of_tokens = len(np)
+            maximum_token = np.text
 
-
-
-
+print("Maximum number of tokens for an instance : ", max_num_of_tokens)  # 7
+print("The maximum token instance : ", maximum_token)  # state-owned RIA Novosti news agency
 
 """
 Explore linguistic characteristics (2 points)
@@ -93,10 +106,8 @@ perceived complexity of a word? Propose at least one and explain your choice in 
 sentences.
 """
 
-
-
-# TODO: which data to use, preprocessed or raw?
-# TODO: should we just compare the distributions of lengths/frequencies in two classes?
+# TODO: which data to use, preprocessed or raw? all classes
+# TODO: should we just compare the distributions of lengths/frequencies in two classes? ok
 """
 Baselines (2 Points)
 Implement four baselines for the task in TODO_baselines.py. 
@@ -114,7 +125,3 @@ Interpret the results in 2-3 sentences.
 Store the predictions in a way that allows you to calculate precision, recall, and F-
 measure and fill the table in exercise 12. 
 """
-
-
-
-
