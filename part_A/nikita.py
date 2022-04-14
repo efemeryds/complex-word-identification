@@ -1,4 +1,6 @@
 # Part A
+import nltk
+from collections import Counter
 import spacy
 nlp = spacy.load('en_core_web_sm')
 sentences_path = "C:/Users/Nikita/OneDrive/Desktop/Course_Materials/NLP/Assignments/complex-word-identification/data/preprocessed/train/sentences.txt"
