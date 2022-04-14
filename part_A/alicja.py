@@ -33,6 +33,7 @@ types_length = len(list(set(token_list)))
 punctuations = list(string.punctuation)
 
 # TODO: should we do lowercase?
+# TODO: unique or total?
 
 words = [x for x in token_list if x not in punctuations]
 words_length = len(words)
