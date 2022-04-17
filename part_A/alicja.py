@@ -9,7 +9,7 @@ nlp = spacy.load("en_core_web_sm")
 Process the dataset using the spaCy package and extract the following information:
 Number of tokens:
 Number of types:  
-Number of words:
+Number of words: (decide if lowercase or unique)
 Average number of words per sentence:
 Average word length: 
 Provide the definition that you used to determine words: 
@@ -24,9 +24,10 @@ tokens_length = len(doc)
 
 token_list = []
 for token in doc:
-    if str(token) not in ["\n"]:
-        token_list.append(str(token))
+    if token.text not in ["\n"]:
+        token_list.append(token.text)
 
+token_length = len(token_list)
 types_length = len(list(set(token_list)))
 
 # words defined as not punctuation
@@ -70,7 +71,7 @@ for token in doc:
 
 pos_df = pd.DataFrame(tmp_list)
 
-# TODO: should we clean the data more? remove punct and \\?
+# TODO: should we clean the data more? remove punct and \\? REMOVE
 
 # group by token, pos_ and get the frequency
 freq_df = pos_df[['pos']].value_counts().reset_index()
@@ -92,7 +93,7 @@ freq_df.to_csv("alicja_tmp_files/pos_frequencies.csv")
 
 tags = ['NOUN', 'PROPN', 'PUNCT', 'VERB', 'ADP', 'DET', 'ADJ', 'AUX', 'PRON', 'ADV']
 
-# TODO: should we clean the data more? remove punct and \\?
+# TODO: should we clean the data more? remove punct and \\? remove punctuation
 
 tags_data = []
 for tag in tags:
@@ -122,7 +123,7 @@ POS trigrams:
 """
 
 
-# TODO: should we clean data somehow?
+# TODO: should we clean data somehow? don't remove punctuation
 
 def get_n_grams(sentences, n=2):
     total_list = []
@@ -159,7 +160,19 @@ print("token trigrams", final_trigrams[0], final_trigrams[1], final_trigrams[3])
 
 print("DONE")
 
-# TODO: What is POS bi and tri gram?
+
+def pos_grams(doc, input_tokens, n):
+    input_tokens = [token.pos_ for token in doc if token.is_alpha]
+    POS_gram_list = [input_tokens[i:i + n] for i in range(len(input_tokens) - n + 1)]
+    return POS_gram_list
+
+
+tokens = [token for token in doc if token.text != "\n"]
+POS_bigrams = pos_grams(doc,tokens,2)
+print(Counter(str(elem) for elem in POS_bigrams).most_common(3))
+
+POS_trigrams = pos_grams(doc,tokens,3)
+print(Counter(str(elem) for elem in POS_trigrams).most_common(3))
 
 
 # --------------------------------------------------------------------------------------------

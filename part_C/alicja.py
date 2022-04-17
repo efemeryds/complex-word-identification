@@ -3,7 +3,6 @@ For part C, we use an implementation for a vanilla LSTM which was originally dev
 named entity recognition project for a Stanford course. You can find more documentation here:
 https://github.com/cs230-stanford/cs230-code-examples/tree/master/pytorch/nlp
 
-# TODO: what "our" version of the code? where is it
 
 11. Understanding the code (1.5 Points)
 Familiarize yourself with our version of the code and try to understand what is going on.
@@ -13,6 +12,7 @@ Inspect the file model/net.py. Which layers are being used and what is their fun
 How could you change the loss function of the model?
 """
 
+# TODO: what "our" version of the code? where is it
 
 
 
