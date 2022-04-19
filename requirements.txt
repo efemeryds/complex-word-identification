@@ -1,9 +1,0 @@
-numpy~=1.21.2
-Pillow
-torch>=1.2
-tabulate
-tqdm~=4.63.0
-spacy=3.2
-spacy~=3.2.1
-pandas~=1.4.1
-matplotlib~=3.5.1
