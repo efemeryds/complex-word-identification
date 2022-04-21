@@ -129,6 +129,7 @@ def evaluate_and_output(model, loss_fn, data_iterator, metrics, num_steps, id2wo
     logging.info("- Eval metrics : " + metrics_string)
     return metrics_mean
 
+
 if __name__ == '__main__':
     """
         Evaluate the model on the test set.
