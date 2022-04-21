@@ -22,9 +22,26 @@ def majority_baseline(train_sentences, train_labels, testinput, testlabels):
 
     # TODO: calculate accuracy for the test input
     # ...
+    accuracy = ''
     return accuracy, predictions
 
 
+def random_baseline(train_sentences, train_labels, testinput, testlabels):
+    predictions = []
+
+    pass
+
+
+def length_baseline(train_sentences, train_labels, testinput, testlabels):
+    predictions = []
+
+    pass
+
+
+def frequency_baseline(train_sentences, train_labels, testinput, testlabels):
+    predictions = []
+
+    pass
 
 
 
@@ -41,17 +58,42 @@ if __name__ == '__main__':
     with open(train_path + "labels.txt") as label_file:
         train_labels = label_file.readlines()
 
-
     with open(dev_path + "sentences.txt") as dev_file:
         dev_sentences = dev_file.readlines()
 
     with open(train_path + "labels.txt") as dev_label_file:
         dev_labels = dev_label_file.readlines()
-    with open(test_path + "sentences.txt") as testfile:
-        testinput = testfile.readlines()
 
-    with open("test_path + labels.txt") as test_labelfile:
-        testlabels = test_label_file.readlines()
-    majority_accuracy, majority_predictions = majority_baseline(train_sentences, train_labels, testinput)
+    with open(test_path + "sentences.txt") as testfile:
+        test_input = testfile.readlines()
+
+    with open("test_path + labels.txt") as test_label_file:
+        test_labels = test_label_file.readlines()
+
+    majority_accuracy, majority_predictions = majority_baseline(train_sentences, train_labels, test_input, test_labels)
+    majority_accuracy_dev, majority_predictions_dev = majority_baseline(train_sentences, train_labels, dev_sentences, dev_labels)
+
+    print("Test acuracy for majority test:", majority_accuracy)
+    print("Test acuracy for majority dev:", majority_accuracy_dev)
+
+    random_accuracy, random_predictions = random_baseline(train_sentences, train_labels, test_input, test_labels)
+    random_accuracy_dev, random_predictions_dev = random_baseline(train_sentences, train_labels, dev_sentences, dev_labels)
+
+    print("Test acuracy for random test:", random_accuracy)
+    print("Test acuracy for random dev:", random_accuracy_dev)
+
+    length_accuracy, length_predictions = length_baseline(train_sentences, train_labels, test_input, test_labels)
+    length_accuracy_dev, length_predictions_dev = length_baseline(train_sentences, train_labels,  dev_sentences, dev_labels)
+
+    print("Test acuracy for length test:", length_accuracy)
+    print("Test acuracy for length dev:", length_accuracy_dev)
+
+    frequency_accuracy, frequency_predictions = frequency_baseline(train_sentences, train_labels, test_input, test_labels)
+    frequency_accuracy_dev, frequency_predictions_dev = frequency_baseline(train_sentences, train_labels, dev_sentences, dev_labels)
+
+    print("Test acuracy for frequency test:", frequency_accuracy)
+    print("Test acuracy for frequency dev:", frequency_accuracy_dev)
 
     # TODO: output the predictions in a suitable way so that you can evaluate them
+
+    # majority_predictions.to_csv()
