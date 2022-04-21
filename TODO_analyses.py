@@ -7,11 +7,11 @@ import pandas as pd
 from collections import Counter
 
 nlp = spacy.load("en_core_web_sm")
-with open("data/preprocessed/train/sentences.txt") as f:
+with open("data/preprocessed/train/sentences.txt", encoding="utf-8") as f:
     text = f.read()
 
 doc = nlp(text)
-
+len(list(doc.sents))
 # 1. Tokenization (1 point)
 # Process the dataset using the spaCy package and extract the following information:
 

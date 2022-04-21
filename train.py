@@ -92,7 +92,7 @@ def train_and_evaluate(model, train_data, val_data, optimizer, loss_fn, metrics,
     Args:
         model: (torch.nn.Module) the neural network
         train_data: (dict) training data with keys 'data' and 'labels'
-        val_data: (dict) validaion data with keys 'data' and 'labels'
+        val_data: (dict) validation data with keys 'data' and 'labels'
         optimizer: (torch.optim) optimizer for parameters of model
         loss_fn: a function that takes batch_output and batch_labels and computes the loss for the batch
         metrics: (dict) a dictionary of functions that compute a metric using the output and labels of each batch
