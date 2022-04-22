@@ -1,5 +1,5 @@
 # The original code only outputs the accuracy and the loss.
-# Process the file model_output.tsv and calculate precision, recall, and F1 for each class
+# Process the file model_output_00005.tsv and calculate precision, recall, and F1 for each class
 
 """ For part C, we use an implementation for a vanilla LSTM which was originally developed for a
 named entity recognition project for a Stanford course.
@@ -14,7 +14,7 @@ import pandas as pd
 # code in train.py.
 # Evaluate the model on the data in preprocessed/test by running evaluate.py.
 # The original code only outputs the accuracy and the loss of the model. I adapted the
-# code, so that it writes the predictions to experiments/base_model/model_output.tsv.
+# code, so that it writes the predictions to experiments/base_model/model_output_00005.tsv.
 
 # Implement calculations for precision, recall, and F1 for each class in
 # TODO_detailed_evaluation.py. You can use existing functions but make sure that you

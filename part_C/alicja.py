@@ -22,7 +22,7 @@ Train the model on the data in preprocessed/train and preprocessed/dev by runnin
 code in train.py. 
 Evaluate the model on the data in preprocessed/test by running evaluate.py. 
 The original code only outputs the accuracy and the loss of the model. I adapted the 
-code, so that it writes the predictions to experiments/base_model/model_output.tsv.
+code, so that it writes the predictions to experiments/base_model/model_output_00005.tsv.
 Implement calculations for precision, recall, and F1 for each class in 
 TODO_detailed_evaluation.py. You can use existing functions but make sure that you 
 understand how they work. 

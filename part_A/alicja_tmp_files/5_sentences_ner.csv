@@ -1,6 +1,0 @@
-,sent,tokens,ner
-0,"children are thought to be aged three , eight , and ten years , alongside an eighteen-month-old baby .","['three , eight', 'ten years', 'eighteen-month-old']","['DATE', 'DATE', 'DATE']"
-1,"We mixed different concentrations of ROS with the spores , plated them out on petridishes with an agar-solution where fungus can grow on .",['ROS'],['GPE']
-2,They feel they are under-represented in higher education and are suffering in a regional economic downturn .,[],[]
-3,Especially as it concerns a third party building up its military presence near our borders .,['third'],['ORDINAL']
-4,"Police said three children were hospitalised for \"" severe dehydration \"" .","['three', '\\']","['CARDINAL', 'ORG']"

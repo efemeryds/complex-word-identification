@@ -165,6 +165,9 @@ if __name__ == '__main__':
     logging.info("- done.")
 
     # Define the model
+
+
+
     model = net.Net(params).cuda() if params.cuda else net.Net(params)
     
     loss_fn = net.loss_fn
