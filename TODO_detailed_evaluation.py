@@ -20,10 +20,6 @@ import pandas as pd
 # TODO_detailed_evaluation.py. You can use existing functions but make sure that you
 # understand how they work. Provide the results for the baselines and the LSTM in the table below.
 
-
-
-# read the results
-
 base_model = pd.read_csv("experiments/base_model/model_output.tsv", sep='\t', header=None)
 base_model.columns = ['tokens', 'gold', 'predictions']
 frequency_model = pd.read_csv("experiments/baselines/frequency_test.csv")
@@ -36,17 +32,17 @@ final_df = pd.concat([final_df, length_model[['predictions']]], axis=1)
 final_df = pd.concat([final_df, majority_model[['predictions']]], axis=1)
 final_df = pd.concat([final_df, random_model[['predictions']]], axis=1)
 
-final_df.columns = ['tokens', 'gold', 'base_model', 'my_tokens', 'frequency_model', 'length_model', 'majority_model', 'random_model']
+final_df.columns = ['tokens', 'gold', 'base_model', 'my_tokens', 'frequency_model', 'length_model', 'majority_model',
+                    'random_model']
 
 for i in range(len(final_df)):
     current_token = final_df['my_tokens'].iloc[i]
     if "\n" in str(current_token):
-        final_df.iloc[i+1:, 3:] = final_df.iloc[i+1:, 3:].shift(periods=1)
-        #print("STOP")
+        final_df.iloc[i + 1:, 3:] = final_df.iloc[i + 1:, 3:].shift(periods=1)
+        # print("STOP")
 
 print("Loading data .. ")
 
-# implement a function for precision, recall and f1
 
 def get_report(model_name, y_true, y_pred):
     # mapping -> 1: N, 0: C
@@ -72,38 +68,3 @@ model_names = ['base_model', 'frequency_model', "length_model", "majority_model"
 
 for name in model_names:
     get_report(name, final_df['gold'], final_df[name])
-
-# 13. Interpretation (1.5 Points)
-# Compare the performance to the results in the shared task
-# (https://aclanthology.org/W18-0507.pdf) and interpret the results in 3-5 sentences. Don’t
-# forget to check the number of instances in the training and test data and integrate this
-# into your reflection.
-
-
-
-
-
-
-
-# 14. Experiments (2 points)
-# Vary a hyperparameter of your choice and plot the F1-results (weighted average) for at
-# least 5 different values. Examples for hyperparameters are embedding size, learning
-# rate, number of epochs, random seed,
-
-# Hyperparameter:
-
-
-# Plot:
-
-
-# Interpret the result (2-4 sentences):
-# Provide 3 examples for which the label changes when the hyperparameter changes:
-# 1. Example 1, Label at Value 1, Label at Value 2
-# 2. Example 2, Label at Value 1, Label at Value 2
-# 3. Example 3, Label at Value 1, Label at Value 2
-
-
-
-
-
-

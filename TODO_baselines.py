@@ -11,12 +11,13 @@ from sklearn.metrics import accuracy_score
 import random
 import spacy
 from wordfreq import zipf_frequency, word_frequency
+
 nlp = spacy.load("en_core_web_sm")
+
 
 # Each baseline returns predictions for the test data. The length and frequency baselines determine a threshold using the development data.
 
 def majority_baseline(train_sentences_input, train_labels_input, test_input_input, test_labels_input):
-
     train_labels_list = []
     for element in train_labels_input:
         train_labels_list.append(element.strip())
@@ -198,7 +199,8 @@ if __name__ == '__main__':
     print("Test acuracy for random dev:", random_accuracy_dev)
 
     length_accuracy, length_predictions = length_baseline(train_sentences, train_labels, test_input, test_labels)
-    length_accuracy_dev, length_predictions_dev = length_baseline(train_sentences, train_labels, dev_sentences, dev_labels)
+    length_accuracy_dev, length_predictions_dev = length_baseline(train_sentences, train_labels, dev_sentences,
+                                                                  dev_labels)
 
     print("Test acuracy for length test:", length_accuracy)
     print("Test acuracy for length dev:", length_accuracy_dev)
@@ -215,4 +217,3 @@ if __name__ == '__main__':
     random_predictions.to_csv("experiments/baselines/random_test.csv", index=False)
     length_predictions.to_csv("experiments/baselines/length_test.csv", index=False)
     frequency_predictions.to_csv("experiments/baselines/frequency_test.csv", index=False)
-

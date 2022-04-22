@@ -126,19 +126,6 @@ final_trigrams = get_most_freq(tokens_trigrams)
 print("token trigrams", final_trigrams[0], final_trigrams[1], final_trigrams[3])
 
 
-# 4. Lemmatization (1 point)
-
-# Provide an example for a lemma that occurs in more than two inflections in the dataset.
-
-# Lemma:
-
-# Inflected Forms:
-
-# Example sentences for each form:
-
-
-# TODO: Find manually
-
 # 5. Named Entity Recognition (1 point)
 # Number of named entities:
 # Number of different entity labels:
